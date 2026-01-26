@@ -80,7 +80,7 @@ if (isset($_GET['sort'])) {
     while ($row = $result->fetch()) {
         $artists[$row['id']] = $row['artist'];
     }
-    dump(file_exists(__DIR__ . '/public/basic.css'));
+    dump(file_exists(__DIR__ . '/public/basi.css'));
     include 'templates/landing.html.php';
 }
 
