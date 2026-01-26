@@ -7,9 +7,7 @@
   "routes": [
     { "src": "/(.*)", "dest": "/api/index.php" },
     { "src": "/public/basic.css", "dest": "/api/public/basic.css" },
-    { "src": "/api/public/basic.css", "dest": "/api/public/basic.css" }
+    { "src": "/api/public/basic.css", "dest": "/api/public/basic.css" },
+    { "src": "/bolt", "dest": "/api/public/basic.css" }
   ]
 }
-
-
-
