@@ -78,9 +78,7 @@ if (isset($_GET['sort'])) {
     $sql = "SELECT artists.id, artists.artist FROM artists ORDER BY artists.artist";
     $result = makeQuery($pdo, $sql, 'Error selecting artists from database: ');
     $meartist = isset($_GET['artist']) ? $_GET['artist'] : '';
-
     $current = isset($_GET['id']) ? $_GET['id'] : '';
-
     while ($row = $result->fetch()) {
         $artists[$row['id']] = $row['artist'];
     }
