@@ -1,6 +1,7 @@
 <?php
 include_once "head.html.php"; ?>
 <h3>Please select an artist</h3>
+<img src="012-DECEMBER-1.jpg"/>
 <form name="cds" method="post" action="">
   Name of Artist: <select name="artist">
     <?php
@@ -16,6 +17,7 @@ include_once "head.html.php"; ?>
     <input type="submit" name="submit" value="Delete Artist" />
   </section>
 </form>
+<img src="../public/012-DECEMBER-1.jpg"/>
 <?php
 if (isset($notice)) {
   include 'confirm.html.php';
