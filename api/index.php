@@ -80,7 +80,7 @@ if (isset($_GET['sort'])) {
     while ($row = $result->fetch()) {
         $artists[$row['id']] = $row['artist'];
     }
-    include __DIR__ .  'templates/landing.html.php';
+    include __DIR__ .  '/templates/landing.html.php';
 }
 
 if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
