@@ -1,6 +1,6 @@
 <?php
 
-include_once "./templates/head.html.php"; ?>
+include_once "head.html.php"; ?>
 
 <h4>Cds Bought</h4>
 <?php
@@ -32,7 +32,7 @@ if (count($cds)): ?>
         <?php
 
         foreach ($cds as $cd):
-            include "./templates/list.html.php";
+            include "list.html.php";
         endforeach;
         ?>
     </table>
