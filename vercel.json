@@ -5,6 +5,7 @@
     }
   },
   "routes": [
-    { "src": "/bolt", "dest": "https://www.bbc.co.uk/" }
+    { "src": "/(.*)", "dest": "/api/index.php" },
+    { "src": "/public/", "dest": "/api/public/" }
   ]
 }
