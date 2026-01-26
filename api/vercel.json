@@ -7,6 +7,5 @@
   "static": {
     "directory": "public"
   },
-
   "routes": [{ "src": "/(.*)", "dest": "/api/index.php" }]
 }
