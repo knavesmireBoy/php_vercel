@@ -5,7 +5,7 @@ function autoloader($class)
 {
     $parts = explode('_', $class);
     $path = implode(DIRECTORY_SEPARATOR, $parts);
-    require_once './klass/' . $path . '.php';
+    require_once 'klass/' . $path . '.php';
 }
 spl_autoload_register('autoloader');
 $sorter = sorter('/sort=([a-z]+)/');
