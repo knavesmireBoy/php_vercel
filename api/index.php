@@ -30,9 +30,6 @@ $byYear = exists('y');
 $sort = 0;
 */
 if (isset($_GET['sort'])) {
-
-
-
     $sorter = $sorter($fromFive());
     $sort = $sorter();
     $i = getIndex($sort, $aa);
@@ -89,7 +86,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
     
     setcookie('artistid', $_POST['artist']);
     setcookie('current', 'a');
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "SELECT * FROM cds, artists";
     $sql .= " WHERE cds.artistid = artists.id AND artists.id = $_POST[artist] ";
     $cds = [];
@@ -113,7 +110,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
 if (isset($_POST['submit']) && $_POST['submit'] == "Add Copy") {
     $requested = "$_REQUEST[copies]";
     $releaseid = "$_REQUEST[releaseID]";
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "SELECT copy FROM cds_bought WHERE releaseid = :releaseid";
     $st = $pdo->prepare($sql);
     $st->execute(array('releaseid' => $releaseid));
@@ -137,7 +134,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Add Copy") {
 if (isset($_GET['submit']) && $_GET['submit'] == "Edit" || isset($_POST['add'])) {
 
     $title = 'Edit a CD';
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "SELECT * FROM cds, artists WHERE (cds.artistid = artists.id AND cds.releaseid = $_REQUEST[releaseID])";
     $result = doQuery($pdo, $sql, 'Error selecting cd list from database:');
     $row = $result->fetch();
@@ -184,7 +181,7 @@ if (isset($_GET['submit']) && $_GET['submit'] == "Edit" || isset($_POST['add']))
     exit();
 } //edit/add
 if (isset($_POST['submit']) && $_POST['submit'] == "Update..") {
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "UPDATE cds, artists SET ";
     $sql .= "artists.artist = '{$_REQUEST['artist']}', "; //using braces to parse
     //$sql .= "artists.artist = '" . $_REQUEST['artist'] . "', "; //using concatenation
@@ -204,7 +201,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Update..") {
 
 if (isset($_POST['submit']) && $_POST['submit'] == "Update") {
 
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "UPDATE cds SET ";
     //$sql .= "artist = :artist,";
     $sql .= "title = :title,";
@@ -229,7 +226,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Update") {
 
 
 if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "New Cd") {
-    include  './includes/db.inc.php';
+    include  'includes/db.inc.php';
 
     /* NewCD can be requseted from two places
     one will deliver the ID of artist from the drop Down Menu
@@ -275,7 +272,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Insert Cd") {
 
     endforeach;
     if ($allfilled) {
-        include './includes/db.inc.php';
+        include 'includes/db.inc.php';
         $sql = "INSERT INTO artists (artist) VALUES (:artist)";
        // $sql = "INSERT INTO artists SET artist = :artist";
         $artist = $_REQUEST['artist'];
@@ -309,7 +306,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Insert Cd") {
 } // insert cd
 
 if (isset($_POST['remove']) && $_POST['remove'] == "copy") {
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "DELETE FROM cds_bought WHERE cdID = " . $_POST['key'];
     doQuery($pdo, $sql, 'Error performing deletion:');
     header('Location:  . ');
@@ -335,7 +332,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Delete Artist") //delete art
 
 if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, cd release AND all instances of physical cds
 {
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "DELETE artists, cds, cds_bought FROM artists, cds, cds_bought WHERE artists.id = cds.artistid AND cds.releaseid = cds_bought.releaseid AND artists.id =" . $_POST['id'];
     doQuery($pdo, $sql, "<p>Error deleting artist:</p>");
     header('Location:  . ');
@@ -344,7 +341,7 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
 
 if (isset($_POST['cd']) && $_POST['submit'] == "destroy") //delete artist, cd release AND all instances of physical cds
 {
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "DELETE cds_bought FROM cds_bought, cds WHERE (cds_bought.releaseid = cds.releaseid) AND ( cds_bought.releaseid = :releaseid)";
     $st = $pdo->prepare($sql);
     $st->bindValue(':releaseid', $_POST['id']);
