@@ -9,6 +9,7 @@
 	<link href="/public/basic.css" media="screen" rel="stylesheet" type="text/css">
     <link href="./public/basic.css" media="screen" rel="stylesheet" type="text/css">
 	<link href="../public/basic.css" media="screen" rel="stylesheet" type="text/css">
+	<link href="basic.css" media="screen" rel="stylesheet" type="text/css">
 	<script>
 	      document.cookie='resolution='+Math.max(screen.width,screen.height)+'; path=/'; 
 	</script>
