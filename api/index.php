@@ -55,7 +55,7 @@ if (isset($_GET['sort'])) {
         }
     }
 
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "SELECT * FROM cds, artists";
     $sql .= " WHERE cds.artistid = artists.id AND artists.id = {$_COOKIE['artistid']}  $q";
     $cds = [];
@@ -74,7 +74,7 @@ if (isset($_GET['sort'])) {
     include "./templates/head.html.php";
     include './templates/info.html.php';
 } else if (!isset($_REQUEST['submit'])) {
-    include './includes/db.inc.php';
+    include 'includes/db.inc.php';
     $sql = "SELECT artists.id, artists.artist FROM artists ORDER BY artists.artist";
     $result = makeQuery($pdo, $sql, 'Error selecting artists from database: ');
     $meartist = isset($_GET['artist']) ? $_GET['artist'] : '';
