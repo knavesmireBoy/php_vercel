@@ -1,5 +1,5 @@
 <?php
-include_once "./templates/head.html.php"; ?>
+include_once "templates/head.html.php"; ?>
 <h3>Please select an artist</h3>
 <form name="cds" method="post" action="">
   Name of Artist: <select name="artist">
