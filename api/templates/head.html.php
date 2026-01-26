@@ -5,6 +5,8 @@
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<title><?= $title ?? 'Artist List'; ?></title>
+	<link href="public/basic.css" media="screen" rel="stylesheet" type="text/css">
+	<link href="/public/basic.css" media="screen" rel="stylesheet" type="text/css">
     <link href="./public/basic.css" media="screen" rel="stylesheet" type="text/css">
 	<link href="../public/basic.css" media="screen" rel="stylesheet" type="text/css">
 	<script>
