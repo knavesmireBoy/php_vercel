@@ -68,6 +68,7 @@ if (isset($_GET['sort'])) {
             'releaseid' => $row['releaseid']
         );
     }
+
     include "templates/head.html.php";
     include 'templates/info.html.php';
 } else if (!isset($_REQUEST['submit'])) {
@@ -79,6 +80,7 @@ if (isset($_GET['sort'])) {
     while ($row = $result->fetch()) {
         $artists[$row['id']] = $row['artist'];
     }
+    dump(__DIR__);
     include 'templates/landing.html.php';
 }
 
