@@ -6,6 +6,6 @@
   },
   "outputDirectory": "/api/public",
   "routes": [
-    { "src": "/(.*)", "dest": "/api/index.php/$1" }
+    { "src": "/(.*)", "dest": "/api/index.php" }
   ]
 }
