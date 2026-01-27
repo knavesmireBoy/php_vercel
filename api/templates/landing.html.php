@@ -1,6 +1,7 @@
 <?php
+//https://phpvercel-silk.vercel.app/
 include_once "head.html.php"; ?>
-<h3>Please select an artist 15:55</h3>
+<h3>Please select an artist 15:58</h3>
 <form name="cds" method="post" action="">
   Name of Artist: <select name="artist">
     <?php
@@ -17,6 +18,8 @@ include_once "head.html.php"; ?>
   </section>
 </form>
 <img src="images/girl.jpg"/>
+<img src="/images/girl.jpg"/>
+<img src="/api/public/images/girl.jpg"/>
 <?php
 if (isset($notice)) {
   include 'confirm.html.php';
