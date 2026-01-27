@@ -4,7 +4,7 @@
       "runtime": "vercel-php@0.7.4"
     }
   },
-  "rewrites": [
+  "routes": [
     { "src": "/(.*)", "dest": "/api/index.php" }
   ]
 }
