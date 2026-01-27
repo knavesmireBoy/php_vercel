@@ -69,7 +69,6 @@ if (isset($_GET['sort'])) {
         );
     }
 
-    include "templates/head.html.php";
     include 'templates/info.html.php';
 } else if (!isset($_REQUEST['submit'])) {
     include 'includes/db.inc.php';
