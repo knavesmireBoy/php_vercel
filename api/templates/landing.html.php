@@ -1,7 +1,6 @@
 <?php
 include_once "head.html.php"; ?>
 <h3>Please select an artist v1</h3>
-<img src="012-DECEMBER-1.jpg"/>
 <form name="cds" method="post" action="">
   Name of Artist: <select name="artist">
     <?php
