@@ -16,7 +16,7 @@ include_once "head.html.php"; ?>
     <input type="submit" name="submit" value="Delete Artist" />
   </section>
 </form>
-<img src="../public/012-DECEMBER-1.jpg"/>
+<img src="images/012-DECEMBER-1.jpg"/>
 <?php
 if (isset($notice)) {
   include 'confirm.html.php';
