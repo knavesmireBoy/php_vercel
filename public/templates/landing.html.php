@@ -1,6 +1,6 @@
 <?php
 include_once "head.html.php"; ?>
-<h3>Please select an artist v2</h3>
+<h3>Please select an artist</h3>
 <form name="cds" method="post" action="">
   Name of Artist: <select name="artist">
     <?php
