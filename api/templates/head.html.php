@@ -1,3 +1,7 @@
+<?php
+var_dump(__DIR__);
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
