@@ -25,7 +25,8 @@ function doQuery($pdo, $sql, $msg)
         return $pdo->query($sql);
     } catch (PDOException $e) {
         $error = $msg . ' ' . $e->getMessage();
-        include __DIR__ . '/../templates/error.html.php';
+        $root =  $_SERVER['DOCUMENT_ROOT'] . '/api/';
+        include $root . '/../templates/error.html.php';
         exit();
     }
 }
@@ -36,8 +37,8 @@ function doPreparedQuery($st, $msg)
         return $st->execute();
     } catch (PDOException $e) {
         $error = $msg . ' ' . $e->getMessage();
-        include __DIR__ . '/../templates/error.html.php';
-
+        $root =  $_SERVER['DOCUMENT_ROOT'] . '/api/';
+        include $root . '/../templates/error.html.php';
         exit();
     }
 }
