@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/helpers.inc.php';
+include_once __DIR__ . '/includes/helpers.inc.php';
 
 function autoloader($className)
 {
