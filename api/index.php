@@ -317,7 +317,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Delete") //delete a cd relea
     $nav = $_POST['artistid'];
     $subject = 'cd';
     $notice = "Please note that the cd and a record of its copies will be deleted from the database.";
-    include __DIR__ . '../templates/confirm.html.php';
+    include __DIR__ . '/../templates/confirm.html.php';
 }
 if (isset($_POST['submit']) && $_POST['submit'] == "Delete Artist") //delete artist, cd release AND all instances of physical cds
 {
@@ -325,8 +325,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Delete Artist") //delete art
     $nav = $id;
     $notice = "Please note that all associated cds will be deleted from the database.";
     $subject = 'artiste';
-    //include __DIR__ . '../templates/landing.html.php';
-    include __DIR__ . '../templates/confirm.html.php';
+    include __DIR__ . '/../templates/confirm.html.php';
 }
 
 if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, cd release AND all instances of physical cds

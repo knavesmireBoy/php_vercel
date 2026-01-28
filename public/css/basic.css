@@ -29,7 +29,7 @@ body {
 	font-size: 100%;
   text-align: center;
   padding: 0 clamp(5em, 25vw, 40em);
-  background: url("../images/girl.jpg") no-repeat center/cover;
+  background: khaki url("../images/girl.jpg") no-repeat center/contain;
 }
 
 html, body {
