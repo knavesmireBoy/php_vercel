@@ -1,10 +1,9 @@
 <?php
 //https://phpvercel-silk.vercel.app/
 include_once "head.html.php"; 
-dump(__DIR__);
 
 ?>
-<h3>Please select an artist 17:58</h3>
+<h3>Please select an artist 07:54</h3>
 <form name="cds" method="post" action="">
   Name of Artist: <select name="artist">
     <?php
