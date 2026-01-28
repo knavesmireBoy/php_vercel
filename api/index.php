@@ -331,7 +331,7 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
     include 'includes/db.inc.php';
 
     $id = intval($_POST['id']);
-    $sql = "SELECT cds.releaseid where cds.artistid = $id";
+    $sql = "SELECT  cds.releaseid FROM cds WHERE cds.artistid = $id";
 
 
     $result = doQuery($pdo, $sql, "<p>Error retreiving id:</p>");
