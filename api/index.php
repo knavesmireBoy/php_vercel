@@ -12,9 +12,8 @@ function autoloader($className)
 
 spl_autoload_register(
     function ($class) {
-        $filename = str_replace('\\', '/', $class) . '.php';
-        $file =  '/classes/' . $filename;
-        require_once $filename;
+        $filename = str_replace('\\', '/', $class) . '.php';        
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/api/classes/$filename";
     }
 );
 
