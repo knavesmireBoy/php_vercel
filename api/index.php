@@ -3,8 +3,8 @@ include_once 'includes/helpers.inc.php';
 
 function autoloader($className) {
     $fileName = str_replace('\\', '/', $className) . '.php';
-    $file =  'classes/' . $fileName;
-    require_once $file;
+    $file =  '/classes/' . $fileName;
+    require_once __DIR__ . $file;
 }
 
 spl_autoload_register('autoloader');
