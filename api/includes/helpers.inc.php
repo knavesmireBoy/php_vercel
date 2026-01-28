@@ -25,7 +25,7 @@ function doQuery($pdo, $sql, $msg)
         return $pdo->query($sql);
     } catch (PDOException $e) {
         $error = $msg . ' ' . $e->getMessage();
-        include 'error.html.php';
+        include '../error.html.php';
         exit();
     }
 }
@@ -36,7 +36,7 @@ function doPreparedQuery($st, $msg)
         return $st->execute();
     } catch (PDOException $e) {
         $error = $msg . ' ' . $e->getMessage();
-        include './error.html.php';
+        include '../error.html.php';
         exit();
     }
 }
