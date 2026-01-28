@@ -6,9 +6,7 @@ function autoloader($class)
 {
     $parts = explode('_', $class);
     $path = implode(DIRECTORY_SEPARATOR, $parts);
-    var_dump($path);
-    dump(is_dir(__DIR__ . '/Class/'));
-    require_once __DIR__ . '/Class/' . $path . '.php';
+    require_once 'classes/' . $path . '.php';
 }
 
 spl_autoload_register('autoloader');

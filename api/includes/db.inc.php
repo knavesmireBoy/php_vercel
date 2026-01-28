@@ -14,8 +14,8 @@ try {
         $params['user'],
         $params['password']
     );
-    $pdo = new \PDO($db);
-    $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO($db);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec('SET search_path TO cd_db');
 } catch (PDOException $e) {
     $output = 'Unable to connect to the database server: ' . $e->getMessage();
