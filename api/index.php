@@ -178,7 +178,7 @@ if (isset($_GET['submit']) && $_GET['submit'] == "Edit" || isset($_POST['add']))
     while ($row = $result->fetch()) {
         $copies[$row['cdid']] = $row['copy'];
     }
-    include __DIR__ . '../templates/edit.html.php';
+    include __DIR__ . '/../templates/edit.html.php';
     exit();
 } //edit/add
 if (isset($_POST['submit']) && $_POST['submit'] == "Update..") {
@@ -255,7 +255,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "New Cd") {
     );
     $status = "hidden";
     $meth = "Post";
-    include __DIR__ . '../templates/edit.html.php';
+    include __DIR__ . '/../templates/edit.html.php';
     exit();
 }
 if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Insert Cd") {
