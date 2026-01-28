@@ -334,7 +334,7 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
     $sql = "SELECT  cds.releaseid FROM cds WHERE cds.artistid = $id";
     $result = doQuery($pdo, $sql, "<p>Error retreiving id:</p>");
     $row = $result->fetch();
-    $release = $row['releaseid'];
+    $release = $row['releaseid'] ?? null;
 
     if (isset($release)) {
         $sql = "DELETE FROM cds_bought WHERE cds_bought.releaseid = $release";
