@@ -254,28 +254,25 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "New Cd") {
     include __DIR__ . '/../templates/edit.html.php';
     exit();
 }
-if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Insert Cd") {
-    $allfilled = "true"; // sets an $allfilled variable to true.  if any fields are empty this will be set to false below
+if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
+    $allfilled = "true"; // sets an $allfilled variable to true. if any fields are empty this will be set to false below
     foreach ($_REQUEST as $name => $value):
         if ($name != 'submit'):
             if (empty($value)): // Checks if there is a value
                 $missing = ucfirst($name); // Makes the name of the field Uppercase first letter
                 echo "<p>Please Fill out the '$missing' Field</p>"; // Gives missing message to the user
                 $allfilled = "false"; // Sets $allfilled variable to false
-
             endif; // empty check
-
         endif; // NOT submit
-
     endforeach;
+
+    dump($allfilled);
     if ($allfilled) {
         include 'includes/db.inc.php';
         $sql = "INSERT INTO artists (artist) VALUES (:artist)";
-        // $sql = "INSERT INTO artists SET artist = :artist";
         $artist = $_REQUEST['artist'];
         $st = $pdo->prepare($sql);
         $st->bindValue(":artist", $_REQUEST['artist']);
-        // $st->bindValue(":id", 55);
         doPreparedQuery($st, "<p>Error inserting into artists table:</p>");
         $id = $pdo->lastInsertId();
 
