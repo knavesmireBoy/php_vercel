@@ -5,9 +5,9 @@ function autoloader($class)
 {
     $parts = explode('_', $class);
     $path = implode(DIRECTORY_SEPARATOR, $parts);
-    //require_once 'klass/' . $path . '.php';
+    require_once 'klass/' . $path . '.php';
 }
-/*
+
 spl_autoload_register('autoloader');
 $sorter = sorter('/sort=([a-z]+)/');
 $orderBy = supply($doAsc, $doDesc, always(' ORDER BY '));
@@ -28,7 +28,7 @@ $checkCookie = isEqualDefer($chronological->getType());
 $byYear = exists('y');
 //$yearIsSet = $byYear($_COOKIE['current']);
 $sort = 0;
-*/
+
 if (isset($_GET['sort'])) {
     $sorter = $sorter($fromFive());
     $sort = $sorter();
