@@ -12,3 +12,5 @@
 	</script>
 </head>
 <body>
+	<?php
+	dump(__DIR__);
