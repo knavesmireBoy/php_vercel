@@ -269,7 +269,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
 
     if ($allfilled) {
         include 'includes/db.inc.php';
-
+        dump($_POST);
         $sql = "UPDATE artists SET artists.artist = :artist";
         $st = $pdo->prepare($sql);
         $artist = $_POST['artist'];
