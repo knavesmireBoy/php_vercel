@@ -336,15 +336,15 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
     $row = $result->fetch();
     $release = $row['releaseid'];
 
-    $sql = "DELETE FROM cds_bought WHERE cds_bought.releaseid = $release";
-    doQuery($pdo, $sql, 'Error performing deletion:');
-
-    $sql = "DELETE from cds USING artists WHERE cds.artistid = :id AND cds.releaseid = :release AND artists.id = :id";
-
-    $st = $pdo->prepare($sql);
-    $st->bindValue(":id", $id);
-    $st->bindValue(":release", $release);
-    doPreparedQuery($st, "<p>'Error deleting cd'</p>");
+    if (isset($release)) {
+        $sql = "DELETE FROM cds_bought WHERE cds_bought.releaseid = $release";
+        doQuery($pdo, $sql, 'Error performing deletion:');
+        $sql = "DELETE FROM cds USING artists WHERE cds.artistid = :id AND cds.releaseid = :release AND artists.id = :id";
+        $st = $pdo->prepare($sql);
+        $st->bindValue(":id", $id);
+        $st->bindValue(":release", $release);
+        doPreparedQuery($st, "<p>'Error deleting cd'</p>");
+    }
 
     $sql = "DELETE FROM artists WHERE id = :id";
     $st = $pdo->prepare($sql);
