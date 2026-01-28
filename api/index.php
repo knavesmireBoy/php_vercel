@@ -334,23 +334,22 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
     $sql = "SELECT  cds.releaseid FROM cds WHERE cds.artistid = $id";
     $result = doQuery($pdo, $sql, "<p>Error retreiving id:</p>");
     $row = $result->fetch();
-    $id = $row['releaseid'];
+    $release = $row['releaseid'];
 
-    $sql = "DELETE FROM cds_bought WHERE cds_bought.releaseid = $id";
-
+    $sql = "DELETE FROM cds_bought WHERE cds_bought.releaseid = $release";
     doQuery($pdo, $sql, 'Error performing deletion:');
+   
     //$st = $pdo->prepare($sql);
     //$st->bindValue(":release", $id);
    // $st->execute(array('releaseid' => $id));
     //delete from cds_bought where cds_bought.releaseid = :release
-    //delete from cds where artist.id = :release
+    //"DELETE FROM cds where artist.id = :id"
     /*
 
-DELETE from cds_bought
-USING cds
-WHERE cds.releaseid = cds_bought.releaseid
-AND
-       AND cds.releaseid = cds_bought.releaseid
+DELETE from cds
+USING artist
+WHERE cds.artistid = :id
+AND cds.releaseid = cds_bought.releaseid
        
        
        IN (SELECT m_product_id
