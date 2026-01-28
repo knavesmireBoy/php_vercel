@@ -68,7 +68,7 @@ if (isset($_GET['sort'])) {
             'releaseid' => $row['releaseid']
         );
     }
-    include __DIR__ . '../templates/info.html.php';
+    include __DIR__ . '/../templates/info.html.php';
 } else if (!isset($_REQUEST['submit'])) {
     include 'includes/db.inc.php';
     $sql = "SELECT artists.id, artists.artist FROM artists ORDER BY artists.artist";
@@ -78,9 +78,9 @@ if (isset($_GET['sort'])) {
     while ($row = $result->fetch()) {
         $artists[$row['id']] = $row['artist'];
     }
-    include __DIR__ . '/../../templates/head.html.php';
+    include __DIR__ . '/../templates/head.html.php';
 
-    include __DIR__ . '/../../templates/landing.html.php';
+    include __DIR__ . '/../templates/landing.html.php';
 }
 
 if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
