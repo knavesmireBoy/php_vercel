@@ -3,7 +3,7 @@
 include_once "head.html.php"; 
 
 ?>
-<h3>Please select an artist 08:01</h3>
+<h3>Please select an artist 08:08</h3>
 <form name="cds" method="post" action="">
   Name of Artist: <select name="artist">
     <?php
