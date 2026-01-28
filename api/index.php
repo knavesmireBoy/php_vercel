@@ -1,15 +1,6 @@
 <?php
 include_once 'includes/helpers.inc.php';
-require_once 'classes/AlphaBetical.php';
-
-function myautoloader($class)
-{
-    $parts = explode('_', $class);
-    $path = implode(DIRECTORY_SEPARATOR, $parts);
-    require_once '/classes/' . $path . '.php';
-}
-
-dump(spl_autoload_register('myautoloader'));
+spl_autoload_register('myautoloader');
 
 $sorter = sorter('/sort=([a-z]+)/');
 $orderBy = supply($doAsc, $doDesc, always(' ORDER BY '));
