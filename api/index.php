@@ -345,7 +345,7 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
     //delete from cds_bought where cds_bought.releaseid = :release
     //"DELETE FROM cds where artist.id = :id"
    
-$sql = "DELETE from cds USING artist WHERE cds.artistid = :id AND cds.releaseid = :release AND artist.id = :id";
+$sql = "DELETE from cds USING artists WHERE cds.artistid = :id AND cds.releaseid = :release AND artists.id = :id";
 
 $st = $pdo->prepare($sql);
 $st->bindValue(":id", $id);
