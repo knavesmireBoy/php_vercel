@@ -1,12 +1,4 @@
 <?php
-
-function myautoloader($class)
-{
-    $parts = explode('_', $class);
-    $path = implode(DIRECTORY_SEPARATOR, $parts);
-    require_once '/classes/' . $path . '.php';
-}
-
 function dump($arg)
 {
     var_dump($arg);

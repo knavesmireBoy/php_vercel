@@ -1,6 +1,6 @@
 <?php
+require_once 'includes/autoload.php';
 include_once 'includes/helpers.inc.php';
-spl_autoload_register('myautoloader');
 
 $sorter = sorter('/sort=([a-z]+)/');
 $orderBy = supply($doAsc, $doDesc, always(' ORDER BY '));
