@@ -69,7 +69,7 @@ if (isset($_GET['sort'])) {
         );
     }
 
-    include 'templates/info.html.php';
+    include '../templates/info.html.php';
 } else if (!isset($_REQUEST['submit'])) {
     include 'includes/db.inc.php';
     $sql = "SELECT artists.id, artists.artist FROM artists ORDER BY artists.artist";
@@ -79,7 +79,7 @@ if (isset($_GET['sort'])) {
     while ($row = $result->fetch()) {
         $artists[$row['id']] = $row['artist'];
     }
-    include __DIR__ . '/templates/landing.html.php';
+    include __DIR__ . '/../templates/landing.html.php';
 }
 
 if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
@@ -105,7 +105,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
             'releaseid' => $row['releaseid']
         );
     }
-    include 'templates/info.html.php';
+    include '../templates/info.html.php';
 } ///////view cds
 if (isset($_POST['submit']) && $_POST['submit'] == "Add Copy") {
     $requested = "$_REQUEST[copies]";
@@ -177,7 +177,7 @@ if (isset($_GET['submit']) && $_GET['submit'] == "Edit" || isset($_POST['add']))
     while ($row = $result->fetch()) {
         $copies[$row['cdid']] = $row['copy'];
     }
-    include 'templates/edit.html.php';
+    include '../templates/edit.html.php';
     exit();
 } //edit/add
 if (isset($_POST['submit']) && $_POST['submit'] == "Update..") {
@@ -254,7 +254,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "New Cd") {
     );
     $status = "hidden";
     $meth = "Post";
-    include 'templates/edit.html.php';
+    include '../templates/edit.html.php';
     exit();
 }
 if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Insert Cd") {
@@ -318,7 +318,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Delete") //delete a cd relea
     $nav = $_POST['artistid'];
     $subject = 'cd';
     $notice = "Please note that the cd and a record of its copies will be deleted from the database.";
-    include 'templates/confirm.html.php';
+    include '../templates/confirm.html.php';
 }
 if (isset($_POST['submit']) && $_POST['submit'] == "Delete Artist") //delete artist, cd release AND all instances of physical cds
 {
@@ -326,8 +326,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Delete Artist") //delete art
     $nav = $id;
     $notice = "Please note that all associated cds will be deleted from the database.";
     $subject = 'artiste';
-    //include 'templates/landing.html.php';
-    include 'templates/confirm.html.php';
+    //include '../templates/landing.html.php';
+    include '../templates/confirm.html.php';
 }
 
 if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, cd release AND all instances of physical cds
