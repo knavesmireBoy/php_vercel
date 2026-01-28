@@ -57,8 +57,7 @@ function makeQuery($conn, $sql, $msg)
     }
     $class = ucfirst($class);
     //require_once str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
-dump($_SERVER);
-    require_once '/var/task/user/api' . "/$class.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/api/$class.php";
     $q = new $class();
     return $q->makeQuery($conn, $sql, $msg);
 }
