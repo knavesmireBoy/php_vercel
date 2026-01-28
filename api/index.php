@@ -266,11 +266,18 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
         endif; // NOT submit
     endforeach;
 
-    dump($allfilled);
+
     if ($allfilled) {
         include 'includes/db.inc.php';
+
+        $sql = "UPDATE artists SET artists.artist = :artist";
+        $st = $pdo->prepare($sql);
+        $artist = $_POST['artist'];
+        doPreparedQuery($st, "<p>Error updating artists table:</p>");
+        $id = $pdo->lastInsertId();
+        dump($id);
+
         $sql = "INSERT INTO artists (artist) VALUES (:artist)";
-        $artist = $_REQUEST['artist'];
         $st = $pdo->prepare($sql);
         $st->bindValue(":artist", $_REQUEST['artist']);
         doPreparedQuery($st, "<p>Error inserting into artists table:</p>");
