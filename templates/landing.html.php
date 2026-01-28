@@ -19,7 +19,6 @@
     <input type="submit" name="submit" value="Delete Artist" />
   </section>
 </form>
-<img src="images/girl.jpg" alt="gal">
 <?php
 if (isset($notice)) {
   include 'confirm.html.php';

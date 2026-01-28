@@ -106,7 +106,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
             'releaseid' => $row['releaseid']
         );
     }
-    include __DIR__ . '../templates/info.html.php';
+    include __DIR__ . '/../templates/info.html.php';
 } ///////view cds
 if (isset($_POST['submit']) && $_POST['submit'] == "Add Copy") {
     $requested = "$_REQUEST[copies]";
