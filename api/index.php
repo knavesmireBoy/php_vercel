@@ -1,22 +1,12 @@
 <?php
 include_once __DIR__ . '/includes/helpers.inc.php';
-
 function autoloader($className)
 {
     $filename = str_replace('\\', '/', $className) . '.php';
-    $file =  '/classes/' . $filename;
-    require_once __DIR__ . $file;
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/api/classes/$filename";
 }
 
-//spl_autoload_register('autoloader');
-
-spl_autoload_register(
-    function ($class) {
-        $filename = str_replace('\\', '/', $class) . '.php';        
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/api/classes/$filename";
-    }
-);
-
+spl_autoload_register('autoloader');
 $sorter = sorter('/sort=([a-z]+)/');
 $orderBy = supply($doAsc, $doDesc, always(' ORDER BY '));
 $orderByExtra = supply($doAsc, $doDesc, always(' , '));
