@@ -78,8 +78,6 @@ if (isset($_GET['sort'])) {
     while ($row = $result->fetch()) {
         $artists[$row['id']] = $row['artist'];
     }
-    include __DIR__ . '/../templates/head.html.php';
-
     include __DIR__ . '/../templates/landing.html.php';
 }
 
