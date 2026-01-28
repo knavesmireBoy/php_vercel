@@ -57,6 +57,8 @@ function makeQuery($conn, $sql, $msg)
     }
     $class = ucfirst($class);
     //require_once str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
+
+    dump($_SERVER);
     require_once $_SERVER["PATH_INFO"] . "/$class.php";
     $q = new $class();
     return $q->makeQuery($conn, $sql, $msg);
