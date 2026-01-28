@@ -14,7 +14,7 @@ spl_autoload_register(
     function ($class) {
         $filename = str_replace('\\', '/', $class) . '.php';
         $file =  '/classes/' . $filename;
-        include_once __DIR__ . $file;
+        require_once $filename;
     }
 );
 
