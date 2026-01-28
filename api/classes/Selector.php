@@ -6,7 +6,7 @@ public function makeQuery($conn, $sql, $msg){
           }
     catch(PDOException $e){
         $error = $msg . ' ' . $e->getMessage();
-        include 'error.html.php';
+        include __DIR__ . '/../templates/error.html.php';
         exit();
     } 
 }

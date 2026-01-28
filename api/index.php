@@ -157,7 +157,7 @@ if (isset($_GET['submit']) && $_GET['submit'] == "Edit" || isset($_POST['add']))
         $count = $result->fetchColumn();
     } catch (PDOException $e) {
         $error = 'Error getting cd count from database: ' . $e->getMessage();
-        include 'error.html.php';
+        include __DIR__ . '/../templates/error.html.php';
         exit();
     }
 

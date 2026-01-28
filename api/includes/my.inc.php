@@ -9,13 +9,3 @@ try {
     include '../templates/output.html.php';
     exit();
 }
-/*
-if (!mysql_select_db('cddb', $conn))
-{
-$error = 'Unable to locate the cds database.' . mysql_error();
-include 'error.html.php';
-exit();
-}
-*/
-//$output = 'Database connection established.';
-//include 'output.html.php';
