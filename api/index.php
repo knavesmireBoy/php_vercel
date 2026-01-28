@@ -1,13 +1,22 @@
 <?php
 include_once 'includes/helpers.inc.php';
 
-function autoloader($className) {
+function autoloader($className)
+{
     $fileName = str_replace('\\', '/', $className) . '.php';
     $file =  '/classes/' . $fileName;
     require_once __DIR__ . $file;
 }
 
-spl_autoload_register('autoloader');
+//spl_autoload_register('autoloader');
+
+spl_autoload_register(
+    function ($class) {
+        $filename = str_replace('\\', '/', $class) . '.php';
+        $file =  '/classes/' . $filename;
+        require_once __DIR__ . $file;
+    }
+);
 
 $sorter = sorter('/sort=([a-z]+)/');
 $orderBy = supply($doAsc, $doDesc, always(' ORDER BY '));
@@ -82,7 +91,7 @@ if (isset($_GET['sort'])) {
 }
 
 if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
-    
+
     setcookie('artistid', $_POST['artist']);
     setcookie('current', 'a');
     include 'includes/db.inc.php';
@@ -273,11 +282,11 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Insert Cd") {
     if ($allfilled) {
         include 'includes/db.inc.php';
         $sql = "INSERT INTO artists (artist) VALUES (:artist)";
-       // $sql = "INSERT INTO artists SET artist = :artist";
+        // $sql = "INSERT INTO artists SET artist = :artist";
         $artist = $_REQUEST['artist'];
         $st = $pdo->prepare($sql);
         $st->bindValue(":artist", $_REQUEST['artist']);
-       // $st->bindValue(":id", 55);
+        // $st->bindValue(":id", 55);
         doPreparedQuery($st, "<p>Error inserting into artists table:</p>");
         $id = $pdo->lastInsertId();
 
