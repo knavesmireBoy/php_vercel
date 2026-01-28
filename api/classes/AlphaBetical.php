@@ -1,2 +1,2 @@
 <?php
-class AlphaBetical extends Chainer{}
+class Alphabetical extends Chainer{}
