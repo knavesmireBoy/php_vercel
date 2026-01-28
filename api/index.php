@@ -349,8 +349,7 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
     $sql = "DELETE FROM artists WHERE id = :id";
     $st = $pdo->prepare($sql);
     $st->bindValue(":id", $id);
-
-    doQuery($pdo, $sql, "<p>Error deleting artist:</p>");
+    doPreparedQuery($st, "<p>Error deleting artist:</p>");
     header('Location:  . ');
     exit();
 }
