@@ -1,6 +1,13 @@
 <?php
-require_once 'includes/autoload.php';
 include_once 'includes/helpers.inc.php';
+
+function autoloader($className) {
+    $fileName = str_replace('\\', '/', $className) . '.php';
+    $file =  'classes/' . $fileName;
+    require_once $file;
+}
+
+spl_autoload_register('autoloader');
 
 $sorter = sorter('/sort=([a-z]+)/');
 $orderBy = supply($doAsc, $doDesc, always(' ORDER BY '));
