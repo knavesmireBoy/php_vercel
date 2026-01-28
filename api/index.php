@@ -338,22 +338,19 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
 
     $sql = "DELETE FROM cds_bought WHERE cds_bought.releaseid = $release";
     doQuery($pdo, $sql, 'Error performing deletion:');
-   
-    //
-    //$st->bindValue(":release", $id);
-   // $st->execute(array('releaseid' => $id));
-    //delete from cds_bought where cds_bought.releaseid = :release
-    //"DELETE FROM cds where artist.id = :id"
-   
-$sql = "DELETE from cds USING artists WHERE cds.artistid = :id AND cds.releaseid = :release AND artists.id = :id";
 
-$st = $pdo->prepare($sql);
-$st->bindValue(":id", $id);
-$st->bindValue(":release", $release);
-doPreparedQuery($st, "<p>'Error deleting cd'</p>");
-       
-   // $sql = "DELETE artists, cds, cds_bought FROM artists, cds, cds_bought WHERE artists.id = cds.artistid AND cds.releaseid = cds_bought.releaseid AND artists.id =" . $_POST['id'];
-   // doQuery($pdo, $sql, "<p>Error deleting artist:</p>");
+    $sql = "DELETE from cds USING artists WHERE cds.artistid = :id AND cds.releaseid = :release AND artists.id = :id";
+
+    $st = $pdo->prepare($sql);
+    $st->bindValue(":id", $id);
+    $st->bindValue(":release", $release);
+    doPreparedQuery($st, "<p>'Error deleting cd'</p>");
+
+    $sql = "DELETE FROM artists WHERE id = :id";
+    $st = $pdo->prepare($sql);
+    $st->bindValue(":id", $id);
+
+    doQuery($pdo, $sql, "<p>Error deleting artist:</p>");
     header('Location:  . ');
     exit();
 }
