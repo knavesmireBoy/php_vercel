@@ -289,7 +289,13 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
             $sql = "SELECT id FROM artists WHERE artists.artist = '$artist'";
             $result = doQuery($pdo, $sql, "<p>Error retreiving id:</p>");
             $row = $result->fetch();
-            $id = $row['id'];
+            $id = isset($row) ? $row['id'] : null;
+        }
+        $sql = "INSERT INTO cds (title, year, label, tracks)";
+        if($id){
+            $sql = rtrim($sql, ')');
+            dump($sql);
+            $sql .= ", artistid)";
         }
         $sql = "INSERT INTO cds (title, year, label, tracks) VALUES";
         $sql .= "( :title, :year, :label, :tracks)";
