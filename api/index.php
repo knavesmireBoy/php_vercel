@@ -301,7 +301,6 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
             $sql .= "( :title, :year, :label, :tracks)";
         }
        // $sql = "INSERT INTO cds (title, year, label, tracks) VALUES";
-       dump($sql);
         $st = $pdo->prepare($sql);
         $st->bindValue(":title", $_REQUEST['title']);
         $st->bindValue(":year", $_REQUEST['year']);
@@ -310,6 +309,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
 
         doPreparedQuery($st, "<p>Error inserting values into cds:</p>");
         $id = $pdo->lastInsertId(); //releaseid
+        dump($id);
+
         $sql = "INSERT INTO cds_bought (releaseid, copy) VALUES($id, 1)";
         doQuery($pdo, $sql, "<p>Error inserting values into cds_bought:</p>");
     } // true
