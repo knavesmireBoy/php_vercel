@@ -197,21 +197,24 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Update..") {
 if (isset($_POST['submit']) && $_POST['submit'] == "Update") {
     include 'includes/db.inc.php';
     $sql = "UPDATE cds SET ";
-    //$sql .= "artist = :artist,";
     $sql .= "title = :title,";
     $sql .= "year = :year,";
     $sql .= "label = :label,";
     $sql .= "tracks = :tracks ";
     $sql .= " FROM artists ";
     $sql .= "WHERE artists.id = cds.artistid ";
-    $sql .= "AND cds.releaseid = $_REQUEST[releaseID]";
+    $sql .= "AND cds.releaseid = $_POST[releaseID]";
     $st = $pdo->prepare($sql);
-    //$st->bindValue(":artist", $_REQUEST['artist']);
-    $st->bindValue(":title", $_REQUEST['title']);
-    $st->bindValue(":year", $_REQUEST['year']);
-    $st->bindValue(":label", $_REQUEST['label']);
-    $st->bindValue(":tracks", $_REQUEST['tracks']);
-    $result = doPreparedQuery($st, "<p>Error inserting into artists table:</p>");
+    $st->bindValue(":title", $_POST['title']);
+    $st->bindValue(":year", $_POST['year']);
+    $st->bindValue(":label", $_POST['label']);
+    $st->bindValue(":tracks", $_POST['tracks']);
+    $result = doPreparedQuery($st, "<p>Error updating cds table:</p>");
+
+    $sql = "UPDATE artists SET artist = :artist";
+    $st = $pdo->prepare($sql);
+    $st->bindValue(":artist", $_POST['artist']);
+    $result = doPreparedQuery($st, "<p>Error updating into artists table:</p>");
     header('Location: . ');
     //"<p> Successfully Updated " . " rows</p>"
     exit();
@@ -222,7 +225,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Update") {
 if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "New Cd") {
     include  'includes/db.inc.php';
 
-    /* NewCD can be requseted from two places
+    /* NewCD can be requested from two places
     one will deliver the ID of artist from the drop Down Menu
     the other will deliver the VALUE of the artist from a current cd
     A succesful check to see if the value can be CAST to an int will deliver a positive value
@@ -329,8 +332,9 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Delete Artist") //delete art
 if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, cd release AND all instances of physical cds
 {
     include 'includes/db.inc.php';
-
     $id = intval($_POST['id']);
+    /*
+    IF NOT FOREIGN KEYS
     $sql = "SELECT  cds.releaseid FROM cds WHERE cds.artistid = $id";
     $result = doQuery($pdo, $sql, "<p>Error retreiving id:</p>");
     $row = $result->fetch();
@@ -345,6 +349,8 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
         $st->bindValue(":release", $release);
         doPreparedQuery($st, "<p>'Error deleting cd'</p>");
     }
+*/
+//ALTER TABLE cds ADD FOREIGN KEY (`artistid`) REFERENCES artists(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
     $sql = "DELETE FROM artists WHERE id = :id";
     $st = $pdo->prepare($sql);
@@ -353,8 +359,9 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
     header('Location:  . ');
     exit();
 }
+;
 
-if (isset($_POST['cd']) && $_POST['submit'] == "destroy") //delete artist, cd release AND all instances of physical cds
+if (isset($_POST['cd']) && $_POST['submit'] == "destroy") 
 {
     include 'includes/db.inc.php';
     /* IF NOT USING FOREIGN KEY
@@ -363,6 +370,7 @@ if (isset($_POST['cd']) && $_POST['submit'] == "destroy") //delete artist, cd re
     $st->bindValue(':releaseid', $_POST['id']);
     $result = doPreparedQuery($st, ' Error deleting copy:');
     */
+    //ALTER TABLE cds_bought ADD CONSTRAINT bought_fk FOREIGN KEY (releaseid) REFERENCES cds(releaseid) ON DELETE CASCADE ON UPDATE CASCADE
     $sql = "DELETE FROM cds WHERE cds.releaseid = $_POST[id]";
     $result = doQuery($pdo, $sql, ' Error deleting actual copy:');
     header('Location:  . ');
