@@ -195,6 +195,9 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Update..") {
 
 
 if (isset($_POST['submit']) && $_POST['submit'] == "Update") {
+
+
+    dump($_POST);
     include 'includes/db.inc.php';
     $sql = "UPDATE cds SET ";
     $sql .= "title = :title,";
@@ -211,7 +214,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Update") {
     $st->bindValue(":tracks", $_POST['tracks']);
     $result = doPreparedQuery($st, "<p>Error updating cds table:</p>");
 
-    $sql = "UPDATE artists SET artist = :artist";
+    $sql = "UPDATE artists SET artist = :artist WHERE id = :id";
     $st = $pdo->prepare($sql);
     $st->bindValue(":artist", $_POST['artist']);
     $result = doPreparedQuery($st, "<p>Error updating into artists table:</p>");
