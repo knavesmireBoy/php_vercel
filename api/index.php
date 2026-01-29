@@ -276,7 +276,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
         $st->bindValue(":artist", $artist);
         $res = doPreparedQuery($st, "<p>Cannot Find Artist:</p>");
         $id = 0;
-        dump($_POST);
+        dump($res);
         if (!$res) {
             $sql = "INSERT INTO artists (artist) VALUES (:artist)";
             $st = $pdo->prepare($sql);
