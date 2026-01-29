@@ -309,6 +309,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
 
 if (isset($_POST['remove']) && $_POST['remove'] == "copy") {
     include 'includes/db.inc.php';
+
+    dump($_POST);
     $sql = "DELETE FROM cds_bought WHERE cdid = " . $_POST['key'];
     doQuery($pdo, $sql, 'Error performing deletion:');
     header('Location:  . ');
