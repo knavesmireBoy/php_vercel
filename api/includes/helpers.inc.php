@@ -31,9 +31,18 @@ function doQuery($pdo, $sql, $msg)
     }
 }
 
-function doPreparedQuery($st, $msg)
+function doPreparedQuery($st, $msg, $flag = false)
 {
     try {
+        if ($flag) {
+            $st->execute();
+            $count = $st->RowCount();
+            if ($count) {
+                return $st->fetchAll();
+            } else {
+                return false;
+            }
+        }
         return $st->execute();
     } catch (PDOException $e) {
         $error = $msg . ' ' . $e->getMessage();
