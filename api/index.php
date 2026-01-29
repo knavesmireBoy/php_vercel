@@ -288,8 +288,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
         if (!$id) {
             $sql = "SELECT id FROM artists WHERE artists.artist = '$artist'";
             $result = doQuery($pdo, $sql, "<p>Error retreiving id:</p>");
-            $row = isset($result) ?  $result->fetch() : null;
-            $id = isset($row) ? $row['id'] : null;
+            $row = !empty($result) ?  $result->fetch() : null;
+            $id = !empty($row) ? $row['id'] : null;
         }
         $sql = "INSERT INTO cds (title, year, label, tracks)";
         if($id){
