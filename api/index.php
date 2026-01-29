@@ -306,10 +306,15 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
             $id = $st->fetch()['id'];
             $sql = "INSERT INTO cds_bought (releaseid, copy) VALUES($id, 1)";
             doQuery($pdo, $sql, "<p>Error inserting values into cds_bought:</p>");
+            /* to reset auto_increment in postgres
+            ALTER SEQUENCE artists RESTART WITH {int} didn't work on command line, so...
+            SELECT pg_get_serial_sequence('cds', 'releaseid');
+            SELECT setval('cd_db.cds_releaseid_seq', (SELECT MAX(releaseid)+1 FROM cds));
+            */
         }
         header('Location:  . ');
         exit();
-    }//allfilled
+    } //allfilled
 } // insert cd
 
 if (isset($_POST['remove']) && $_POST['remove'] == "X") {
