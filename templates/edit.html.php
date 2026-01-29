@@ -9,7 +9,7 @@
 	<form name="CDs" method="<?php htmlout($meth); ?>" action="<?php htmlout($action); ?>">
 		<?php if ($id) { ?>
 			<input type="hidden" name="releaseID" value="<?php htmlout($id); ?>">
-			<input type="hidden" name="artistID" value="<?php htmlout($artistID); ?>">
+			<input type="hidden" name="artistID" value="<?php htmlout($artistid); ?>">
 		<?php } ?>
 		<table class="enter">
 			<tr>

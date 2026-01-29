@@ -311,9 +311,8 @@ if (isset($_POST['remove']) && $_POST['remove'] == "copy") {
 } //delete copy
 if (isset($_POST['submit']) && $_POST['submit'] == "Delete") //delete a cd release AND all instances of physical cds
 {
-    dump($_POST);
-    $id = $_POST['releaseid'];
-    $nav = $_POST['artistid'];
+    $id = $_POST['releaseID'];
+    $nav = $_POST['artistID'];
     $subject = 'cd';
     $notice = "Please note that the cd and a record of its copies will be deleted from the database.";
     include __DIR__ . '/../templates/confirm.html.php';
