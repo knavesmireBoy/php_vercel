@@ -271,11 +271,12 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
     if ($allfilled) {
         include 'includes/db.inc.php';
         $artist = $_POST['artist'];
-        $sql = "SELECT artists FROM artists WHERE artist = :artist";
+        $sql = "SELECT id FROM artists WHERE artist = :artist";
         $st = $pdo->prepare($sql);
         $st->bindValue(":artist", $artist);
         $res = doPreparedQuery($st, "<p>Cannot Find Artist:</p>");
-        $id = 0;
+        //$id = 0;
+        var_dump($artist);
         dump($res);
         if (!$res) {
             $sql = "INSERT INTO artists (artist) VALUES (:artist)";
