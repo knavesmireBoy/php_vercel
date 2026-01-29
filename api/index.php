@@ -275,13 +275,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
         $st = $pdo->prepare($sql);
         $st->bindValue(":artist", $artist);
         $res = doPreparedQuery($st, "<p>Cannot Find Artist:</p>", true);
-        //$id = 0;
-        //var_dump($artist);
-        dump($res);
         if (!$res) {
-            $sql = "INSERT INTO artists (artist) VALUES (:artist)";
-            $st = $pdo->prepare($sql);
-            $st->bindValue(":artist", $_REQUEST['artist']);
+            $sq = "INSERT INTO artists (artist) VALUES (:artist)";
+            $st = $pdo->prepare($sq);
+            $st->bindValue(":artist", $artist);
             doPreparedQuery($st, "<p>Error inserting into artists table:</p>");
             $id = $pdo->lastInsertId();
         }
@@ -301,6 +298,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
             $sql .= " VALUES ";
             $sql .= "( :title, :year, :label, :tracks)";
         }
+        dump($sql);
        // $sql = "INSERT INTO cds (title, year, label, tracks) VALUES";
         $st = $pdo->prepare($sql);
         $st->bindValue(":title", $_REQUEST['title']);
