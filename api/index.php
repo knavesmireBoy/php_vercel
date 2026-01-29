@@ -357,7 +357,7 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
 if (isset($_POST['cd']) && $_POST['submit'] == "destroy") //delete artist, cd release AND all instances of physical cds
 {
     include 'includes/db.inc.php';
-    /*
+    /* IF NOT USING FOREIGN KEY
     $sql = "DELETE cds_bought FROM cds_bought, cds WHERE (cds_bought.releaseid = cds.releaseid) AND ( cds_bought.releaseid = :releaseid)";
     $st = $pdo->prepare($sql);
     $st->bindValue(':releaseid', $_POST['id']);
