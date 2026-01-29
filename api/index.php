@@ -270,6 +270,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
 
     if ($allfilled) {
         include 'includes/db.inc.php';
+        $insert = false;
         $artist = $_POST['artist'];
         $sql = "SELECT id FROM artists WHERE artist = :artist";
         $st = $pdo->prepare($sql);
@@ -281,31 +282,33 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
             $st->bindValue(":artist", $artist);
             doPreparedQuery($st, "<p>Error inserting into artists table:</p>");
             $id = $pdo->lastInsertId();
+            $insert = true;
         }
         /*$id would be zero if there is an existing artist*/
-        if (!$id) {
+        if (!$insert) {
             $sql = "SELECT id FROM artists WHERE artists.artist = '$artist'";
             $result = doQuery($pdo, $sql, "<p>Error retreiving id:</p>");
             $row = !empty($result) ?  $result->fetch() : null;
             $id = !empty($row) ? $row['id'] : null;
         }
         $sql = "INSERT INTO cds (title, year, label, tracks)";
-        if($id){
+        if ($insert) {
             $sql = rtrim($sql, ')');
             $sql .= ", artistid)";
         }
-        else {
-            $sql .= " VALUES ";
+        $sql .= " VALUES ";
+        if ($insert) {
+            $sql .= "( :title, :year, :label, :tracks, :artistid)";
+            $st = $pdo->prepare($sql);
+            $st->bindValue(":artistid", $id);
+        } else {
             $sql .= "( :title, :year, :label, :tracks)";
+            $st = $pdo->prepare($sql);
         }
-        dump($sql);
-       // $sql = "INSERT INTO cds (title, year, label, tracks) VALUES";
-        $st = $pdo->prepare($sql);
-        $st->bindValue(":title", $_REQUEST['title']);
-        $st->bindValue(":year", $_REQUEST['year']);
-        $st->bindValue(":label", $_REQUEST['label']);
-        $st->bindValue(":tracks", $_REQUEST['tracks']);
-
+        $st->bindValue(":title", $_POST['title']);
+        $st->bindValue(":year", $_POST['year']);
+        $st->bindValue(":label", $_POST['label']);
+        $st->bindValue(":tracks", $_POST['tracks']);
         doPreparedQuery($st, "<p>Error inserting values into cds:</p>");
         $id = $pdo->lastInsertId(); //releaseid
         dump($id);
@@ -363,7 +366,7 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
         doPreparedQuery($st, "<p>'Error deleting cd'</p>");
     }
 */
-//ALTER TABLE cds ADD FOREIGN KEY (`artistid`) REFERENCES artists(id) ON DELETE CASCADE ON UPDATE CASCADE;
+    //ALTER TABLE cds ADD FOREIGN KEY (`artistid`) REFERENCES artists(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
     $sql = "DELETE FROM artists WHERE id = :id";
     $st = $pdo->prepare($sql);
@@ -371,11 +374,9 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
     doPreparedQuery($st, "<p>Error deleting artist:</p>");
     header('Location:  . ');
     exit();
-}
-;
+};
 
-if (isset($_POST['cd']) && $_POST['submit'] == "destroy") 
-{
+if (isset($_POST['cd']) && $_POST['submit'] == "destroy") {
     include 'includes/db.inc.php';
     /* IF NOT USING FOREIGN KEY
     $sql = "DELETE cds_bought FROM cds_bought, cds WHERE (cds_bought.releaseid = cds.releaseid) AND ( cds_bought.releaseid = :releaseid)";
