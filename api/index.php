@@ -80,7 +80,6 @@ if (isset($_GET['sort'])) {
 }
 
 if (isset($_POST['submit']) && $_POST['submit'] == "View Cds") {
-
     setcookie('artistid', $_POST['artist']);
     setcookie('current', 'a');
     include 'includes/db.inc.php';
@@ -129,7 +128,6 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Add Copy") {
     exit();
 } ///end add copy
 if (isset($_GET['submit']) && $_GET['submit'] == "Edit" || isset($_POST['add'])) {
-
     $title = 'Edit a CD';
     include 'includes/db.inc.php';
     $sql = "SELECT * FROM cds, artists WHERE (cds.artistid = artists.id AND cds.releaseid = $_REQUEST[releaseID])";
@@ -197,7 +195,6 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Update..") {
 
 
 if (isset($_POST['submit']) && $_POST['submit'] == "Update") {
-
     include 'includes/db.inc.php';
     $sql = "UPDATE cds SET ";
     //$sql .= "artist = :artist,";
@@ -360,10 +357,12 @@ if (isset($_POST['artiste']) && $_POST['submit'] == "destroy") //delete artist, 
 if (isset($_POST['cd']) && $_POST['submit'] == "destroy") //delete artist, cd release AND all instances of physical cds
 {
     include 'includes/db.inc.php';
+    /*
     $sql = "DELETE cds_bought FROM cds_bought, cds WHERE (cds_bought.releaseid = cds.releaseid) AND ( cds_bought.releaseid = :releaseid)";
     $st = $pdo->prepare($sql);
     $st->bindValue(':releaseid', $_POST['id']);
     $result = doPreparedQuery($st, ' Error deleting copy:');
+    */
     $sql = "DELETE FROM cds WHERE cds.releaseid = $_POST[id]";
     $result = doQuery($pdo, $sql, ' Error deleting actual copy:');
     header('Location:  . ');
