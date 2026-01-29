@@ -283,8 +283,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
             $st = $pdo->prepare($sq);
             $st->bindValue(":artist", $artist);
             doPreparedQuery($st, "<p>Error inserting into artists table:</p>");
-            dump($st->fetch());
-            $id = $pdo->lastInsertId();
+            $id = $st->fetch();
             $insert = true;
         }
         //$id would be zero if there is an existing artist
