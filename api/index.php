@@ -311,6 +311,7 @@ if (isset($_POST['remove']) && $_POST['remove'] == "copy") {
 } //delete copy
 if (isset($_POST['submit']) && $_POST['submit'] == "Delete") //delete a cd release AND all instances of physical cds
 {
+    dump($_POST);
     $id = $_POST['releaseid'];
     $nav = $_POST['artistid'];
     $subject = 'cd';
