@@ -269,55 +269,48 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
     endforeach;
 
     if ($allfilled) {
+        //could be a fresh artist AND cd; or just fresh cd
         include 'includes/db.inc.php';
         $insert = false;
+        $id = 0;
         $artist = $_POST['artist'];
         $sql = "SELECT id FROM artists WHERE artist = :artist";
         $st = $pdo->prepare($sql);
         $st->bindValue(":artist", $artist);
         $res = doPreparedQuery($st, "<p>Cannot Find Artist:</p>", true);
         if (!$res) {
-            $sq = "INSERT INTO artists (artist) VALUES (:artist)";
+            $sq = "INSERT INTO artists (artist) VALUES (:artist) RETURNING id";
             $st = $pdo->prepare($sq);
             $st->bindValue(":artist", $artist);
             doPreparedQuery($st, "<p>Error inserting into artists table:</p>");
+            dump($st->fetch());
             $id = $pdo->lastInsertId();
             $insert = true;
         }
-        /*$id would be zero if there is an existing artist*/
+        //$id would be zero if there is an existing artist
         if (!$insert) {
             $sql = "SELECT id FROM artists WHERE artists.artist = '$artist'";
             $result = doQuery($pdo, $sql, "<p>Error retreiving id:</p>");
             $row = !empty($result) ?  $result->fetch() : null;
             $id = !empty($row) ? $row['id'] : null;
         }
-        $sql = "INSERT INTO cds (title, year, label, tracks)";
-        if ($insert) {
-            $sql = rtrim($sql, ')');
-            $sql .= ", artistid)";
-        }
-        $sql .= " VALUES ";
-        if ($insert) {
+        if ($id) {
+            $sql = "INSERT INTO cds (title, year, label, tracks, artistid) VALUES ";
             $sql .= "( :title, :year, :label, :tracks, :artistid)";
             $st = $pdo->prepare($sql);
             $st->bindValue(":artistid", $id);
-        } else {
-            $sql .= "( :title, :year, :label, :tracks)";
-            $st = $pdo->prepare($sql);
+            $st->bindValue(":title", $_POST['title']);
+            $st->bindValue(":year", $_POST['year']);
+            $st->bindValue(":label", $_POST['label']);
+            $st->bindValue(":tracks", $_POST['tracks']);
+            doPreparedQuery($st, "<p>Error inserting values into cds:</p>");
+            $id = $pdo->lastInsertId(); //releaseid
+            $sql = "INSERT INTO cds_bought (releaseid, copy) VALUES($id, 1)";
+            doQuery($pdo, $sql, "<p>Error inserting values into cds_bought:</p>");
         }
-        $st->bindValue(":title", $_POST['title']);
-        $st->bindValue(":year", $_POST['year']);
-        $st->bindValue(":label", $_POST['label']);
-        $st->bindValue(":tracks", $_POST['tracks']);
-        doPreparedQuery($st, "<p>Error inserting values into cds:</p>");
-        $id = $pdo->lastInsertId(); //releaseid
-        dump($id);
-
-        $sql = "INSERT INTO cds_bought (releaseid, copy) VALUES($id, 1)";
-        doQuery($pdo, $sql, "<p>Error inserting values into cds_bought:</p>");
-    } // true
-    header('Location:  . ');
-    exit();
+        header('Location:  . ');
+        exit();
+    }//allfilled
 } // insert cd
 
 if (isset($_POST['remove']) && $_POST['remove'] == "X") {
