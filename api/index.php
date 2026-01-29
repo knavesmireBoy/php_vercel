@@ -294,11 +294,14 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Insert Cd") {
         $sql = "INSERT INTO cds (title, year, label, tracks)";
         if($id){
             $sql = rtrim($sql, ')');
-            dump($sql);
             $sql .= ", artistid)";
         }
-        $sql = "INSERT INTO cds (title, year, label, tracks) VALUES";
-        $sql .= "( :title, :year, :label, :tracks)";
+        else {
+            $sql .= " VALUES ";
+            $sql .= "( :title, :year, :label, :tracks)";
+        }
+       // $sql = "INSERT INTO cds (title, year, label, tracks) VALUES";
+       dump($sql);
         $st = $pdo->prepare($sql);
         $st->bindValue(":title", $_REQUEST['title']);
         $st->bindValue(":year", $_REQUEST['year']);
