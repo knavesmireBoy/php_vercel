@@ -27,7 +27,8 @@ button {
 body {
   font-size: 100%;
   text-align: center;
-  padding: 0 clamp(10px, 25vw, 640px);
+  padding-left: clamp(10px, 25vw, 640px);
+  padding-right: clamp(10px, 25vw, 640px);
 }
 
 html,
