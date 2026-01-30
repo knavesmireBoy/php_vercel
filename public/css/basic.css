@@ -196,10 +196,10 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color: cadetblue;
   font: 1em normal Verdana, serif;
-  width: clamp(15em, 90vw, 19em);
-  border: solid 1px red;
+  width: clamp(15em, 50vw, 40em);
+  border: solid 1px;
   text-align: center;
   margin: auto;
 }
