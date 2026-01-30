@@ -196,9 +196,9 @@ html {
 }
 
 body {
-  background-color: cadetblue;
+  background-color: darkblue;
   font: 1em normal Verdana, serif;
-  width: clamp(15em, 50vw, 40em);
+  width: clamp(20rem, 50vw, 40em);
   border: solid 1px;
   text-align: center;
   margin: auto;
@@ -257,7 +257,7 @@ li {
 }
 
 select[name="artist"] {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.5rem 3px;
 }
 
 table.enter {
