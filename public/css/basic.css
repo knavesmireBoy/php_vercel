@@ -199,7 +199,7 @@ body {
   background-color: white;
   font: 1em normal Verdana, serif;
   background-color:beige;
-  width: 15em;
+  width: clamp(15em, 90vw, 19em);
   border: solid 1px red;
 }
 table {
