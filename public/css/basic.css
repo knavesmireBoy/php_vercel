@@ -27,8 +27,6 @@ button {
 body {
   font-size: 100%;
   text-align: center;
-  padding-left: clamp(10px, 25vw, 640px);
-  padding-right: clamp(10px, 25vw, 640px);
 }
 
 html,
@@ -200,6 +198,9 @@ html {
 body {
   background-color: white;
   font: 1em normal Verdana, serif;
+  background-color: aliceblue;
+  padding-left: clamp(10px, 25vw, 640px);
+  padding-right: clamp(10px, 25vw, 640px);
 }
 table {
   margin-bottom: 1em;
@@ -255,7 +256,7 @@ li {
 }
 
 select[name="artist"] {
-  margin: 0 0 .5rem;
+  margin: 0 0 0.5rem;
 }
 
 table.enter {
