@@ -22,6 +22,33 @@ include_once "head.html.php";
 if (isset($notice)) {
   include 'confirm.html.php';
 } ?>
+
+<user-card name="Sarah Chen" role="Full Stack Developer"></user-card>
+<script>
+class UserCard extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({mode: 'open'});
+    shadow.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          padding: 20px;
+          border-radius: 12px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          font-family: 'Inter', sans-serif;
+        }
+      </style>
+      <div class="card">
+        <h3>${this.getAttribute('name')}</h3>
+        <p>${this.getAttribute('role')}</p>
+      </div>
+    `;
+  }
+}
+customElements.define('user-card', UserCard);
+</script>
 </body>
 
 </html>
