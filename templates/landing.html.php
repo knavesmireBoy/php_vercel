@@ -4,7 +4,7 @@ include_once "head.html.php";
 ?>
 <h3>Please select an artist</h3>
 <form name="cds" method="post" action="">
-  Name of Artist: <select name="artist">
+  <label for="artist">Name of Artist:</label><select name="artist" id="artist">
     <?php
     foreach ($artists as $key => $artist):
       $str = ($key == $current) ? ' selected="selected"' : ''; ?>
