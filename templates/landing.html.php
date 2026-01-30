@@ -1,5 +1,5 @@
 <?php
-include_once "head.html.php"; 
+include_once "head.html.php";
 
 ?>
 <h3>Please select an artist</h3>
