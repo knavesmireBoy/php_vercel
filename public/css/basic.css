@@ -196,7 +196,7 @@ html {
 }
 
 body {
-  background-color: darkblue;
+  background-color: white;
   font: 1em normal Verdana, serif;
   width: clamp(20rem, 50vw, 40em);
   border: solid 1px;
