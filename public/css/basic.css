@@ -28,7 +28,6 @@ body {
   font-size: 100%;
   text-align: center;
   padding: 0 clamp(5em, 25vw, 40em);
-  background: khaki;
 }
 
 html,
@@ -111,7 +110,6 @@ video {
   padding: 0;
 }
 /* IE fixes for HTML5 elements */
-
 article,
 aside,
 details,
@@ -200,7 +198,7 @@ html {
 
 body {
   background-color: white;
-  font: 0.9em normal Verdana, serif;
+  font: 1em normal Verdana, serif;
 }
 table {
   margin-bottom: 1em;
@@ -257,11 +255,8 @@ li {
 
 table.enter {
   font-family: "Verdana", sans-serif;
-  font-size: 0.7em;
 }
-table.enter input {
-  font-size: 1.2em;
-}
+
 .enter input[type="text"] {
   margin: 0;
   padding: 0;
